@@ -34,3 +34,5 @@ excluded from Git. Leave that folder out of manual uploads too.
 | A5 | Runs perfectly | iPad 2,4, iPad 3, iPod Touch 5, iPhone 4S, iPad Mini 1 | Runs flawlessly with no game breaking bugs, but further testing is still needed. |
 | A4 | Playable, but somewhat unstable | iPhone 4 CDMA | The game runs normally, but theres some slowdowns and occasional crashes. |
 | S5L89209 (3GS) | Unconfirmed | Not yet | Not tested, but performace could be poor. |
+
+Ironically, the visuals are better in a non-retina screen.
