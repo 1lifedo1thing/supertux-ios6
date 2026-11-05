@@ -51,7 +51,7 @@ def configure():
     mkdir(B)
     write('pnglibconf.h', open(os.path.join(V, 'png/scripts/pnglibconf.h.prebuilt')).read())
     write('ogg/config_types.h', '#pragma once\n#include <stdint.h>\ntypedef int16_t ogg_int16_t;\ntypedef uint16_t ogg_uint16_t;\ntypedef int32_t ogg_int32_t;\ntypedef uint32_t ogg_uint32_t;\ntypedef int64_t ogg_int64_t;\ntypedef uint64_t ogg_uint64_t;\n')
-    modules = [('FT_Module_Class', 'autofit_module_class'), ('FT_Driver_ClassRec', 'tt_driver_class'), ('FT_Module_Class', 'sfnt_module_class'), ('FT_Module_Class', 'psnames_module_class'), ('FT_Renderer_Class', 'ft_raster1_renderer_class'), ('FT_Renderer_Class', 'ft_smooth_renderer_class')]
+    modules = [('FT_Module_Class', 'autofit_module_class'), ('FT_Driver_ClassRec', 'tt_driver_class'), ('FT_Driver_ClassRec', 'cff_driver_class'), ('FT_Module_Class', 'sfnt_module_class'), ('FT_Module_Class', 'psnames_module_class'), ('FT_Module_Class', 'psaux_module_class'), ('FT_Module_Class', 'pshinter_module_class'), ('FT_Renderer_Class', 'ft_raster1_renderer_class'), ('FT_Renderer_Class', 'ft_smooth_renderer_class')]
     write('freetype/config/ftmodule.h', ''.join('FT_USE_MODULE(%s, %s)\n' % pair for pair in modules))
     sdl_config = os.path.join(V, 'SDL/include/SDL_config_iphoneos.h')
     text = open(sdl_config).read()
@@ -145,7 +145,7 @@ def groups():
     sdl += files(os.path.join(V, 'SDL'), 'src/video/yuv2rgb/yuv_rgb.c src/file/cocoa/SDL_rwopsbundlesupport.m')
     yield 'SDL', sdl, [], []
     yield 'png', [p for p in files(os.path.join(V, 'png'), '*.c') if os.path.basename(p) != 'pngtest.c'], ['PNG_ARM_NEON_OPT=0'], []
-    ft = 'src/base/ftbase.c src/base/ftbbox.c src/base/ftbitmap.c src/base/ftglyph.c src/base/ftinit.c src/base/ftstroke.c src/base/ftsynth.c src/base/ftsystem.c src/base/ftdebug.c src/autofit/autofit.c src/truetype/truetype.c src/sfnt/sfnt.c src/smooth/smooth.c src/raster/raster.c src/psnames/psnames.c src/gzip/ftgzip.c'
+    ft = 'src/base/ftbase.c src/base/ftbbox.c src/base/ftbitmap.c src/base/ftglyph.c src/base/ftinit.c src/base/ftstroke.c src/base/ftsynth.c src/base/ftsystem.c src/base/ftdebug.c src/autofit/autofit.c src/truetype/truetype.c src/cff/cff.c src/psaux/psaux.c src/pshinter/pshinter.c src/sfnt/sfnt.c src/smooth/smooth.c src/raster/raster.c src/psnames/psnames.c src/gzip/ftgzip.c'
     yield 'freetype', files(os.path.join(V, 'freetype'), ft), ['FT2_BUILD_LIBRARY', 'FT_CONFIG_OPTION_SYSTEM_ZLIB'], []
     yield 'SDL_image', files(os.path.join(V, 'SDL_image'), 'IMG*.c'), ['LOAD_PNG', 'PNG_ARM_NEON_OPT=0', 'SDL_IMAGE_USE_COMMON_BACKEND=1'], []
     yield 'SDL_ttf', files(os.path.join(V, 'SDL_ttf'), 'SDL_ttf.c'), [], []
