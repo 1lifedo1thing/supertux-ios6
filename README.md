@@ -3,6 +3,8 @@
 A port of SuperTux 0.7.0 for iOS 6.
 It uses as base the Android build, supporting mobile controls
 
+This proyect was developed using ChatGPT Codex.
+
 ## Download and installation
 
 1. Download the .ipa or .deb in the 
