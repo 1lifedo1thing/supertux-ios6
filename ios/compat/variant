@@ -1,0 +1,10 @@
+#pragma once
+#define variant_CONFIG_SELECT_VARIANT variant_VARIANT_NONSTD
+#include <nonstd/variant.hpp>
+namespace std {
+using nonstd::variant;
+using nonstd::get;
+using nonstd::get_if;
+using nonstd::holds_alternative;
+using nonstd::monostate;
+}

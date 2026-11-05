@@ -1,0 +1,4 @@
+#pragma once
+#define nssv_CONFIG_SELECT_STRING_VIEW nssv_STRING_VIEW_NONSTD
+#include <nonstd/string_view.hpp>
+namespace std { using nonstd::string_view; using nonstd::basic_string_view; }

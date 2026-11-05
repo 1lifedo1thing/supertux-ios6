@@ -1,0 +1,9 @@
+/build/
+/generated/
+/vendor/
+/Resources/
+/*.tar.gz
+/__pycache__/
+
+/data-manifest.json
+/tile-subset.json

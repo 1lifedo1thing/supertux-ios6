@@ -1,0 +1,10 @@
+#pragma once
+#define optional_CONFIG_SELECT_OPTIONAL optional_OPTIONAL_NONSTD
+#include <nonstd/optional.hpp>
+namespace std {
+using nonstd::optional;
+using nonstd::nullopt;
+using nonstd::nullopt_t;
+using nonstd::bad_optional_access;
+using nonstd::make_optional;
+}
