@@ -30,6 +30,7 @@ extern "C" {
 #include "supertux/menu/menu_storage.hpp"
 #include "supertux/title_screen.hpp"
 #include "util/gettext.hpp"
+#include "util/log.hpp"
 #include "video/ttf_font.hpp"
 
 enum {
@@ -57,7 +58,18 @@ LanguageMenu::LanguageMenu()
     if(Resources::needs_custom_font(lang))
     {
       auto font_path = Resources::get_font_for_locale(lang);
-      font = std::make_shared<TTFFont>(font_path, 18, 1.25f, 2, 1);
+      try
+      {
+        font = std::make_shared<TTFFont>(font_path, 18, 1.25f, 2, 1);
+      }
+      catch(const std::exception& err)
+      {
+        // A font that cannot be loaded must not take the whole game down:
+        // fall back to the default font and keep the menu usable.
+        log_warning << "Couldn't load font '" << font_path << "' for language '"
+                    << lang.str() << "', falling back to the default font: "
+                    << err.what() << std::endl;
+      }
     }
     item.set_font(font);
   }
